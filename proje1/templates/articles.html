@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="jumbotron text-left">
+    <h3>Makaleler</h3>
+    <small>Hoşgeldin {{session["user_name"]}}</small>
+    <hr>
+
+    <form action="/search" method="post">
+        <input class="form-control-sm" name="keyword" type="search" placeholder="Ara">
+        <button class="btn btn-lg btn-primary btn-sm" type="submit">Search</button>
+    </form>
+     <br>
+        {% if articles %}
+        <ul class="list-group">
+            {% for article in articles %}
+            <li class="list-group-item"><a href="/article/{{article.id}}">{{article.title}}</a></li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+    <div class="alert alert-danger">Bu blogda henüz makale bulunmuyor.</div>
+
+    {% endif %}
+
+
+</div>
+
+{% endblock %}
